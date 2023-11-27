@@ -1,0 +1,32 @@
+#!/usr/bin/python3
+
+import random
+import random_words
+
+word = random.choice(random_words.randomWords)
+print(word)
+lives = 7
+list_of_words = []
+
+for x in range(len(word)):
+    list_of_words += '_'
+print(list_of_words)
+
+gameEnd = False
+while not gameEnd:
+    guessLetter = input("Guess a Letter: ").lower()
+    for position in range(len(word)):
+        letter = word[position]
+        if letter == guessLetter:
+            list_of_words[position] = guessLetter
+    
+    print(list_of_words)
+    if guessLetter not in word:
+        lives -= 1
+        if lives == 0:
+            gameEnd = True
+            print("You Lost, Try again!! \n")
+
+    if '_' not in list_of_words:
+        gameEnd = True
+        print("YOU WON")
